@@ -13,19 +13,19 @@ jobs:
         name: Requirements
         command: |
           apt-get update && apt-get dist-upgrade -yqq && apt-get install -yqq sudo lsb-release apt-transport-https ca-certificates software-properties-common wget curl netcat aria2 whois figlet git p7zip p7zip-full zip unzip
-          apt-get install -yqq wget aria2 ffmpeg speedtest-cli telnet lshw tree
+          apt-get install -yqq wget aria2 httpie ffmpeg speedtest-cli telnet lshw tree
     - run:
         name: Downloading
         command: |
-         aria2c --disable-ipv6 --bt-max-peers=0 --bt-seed-unverified=true --seed-time=1 --seed-ratio=1.0 "https://onejav.com/torrent/ofje288_2/download/051700/onejav.com_ofje288_2.torrent"
+         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 https://www.dropbox.com/s/dl/j2xxcsnw4yd8mld/Awaken.E10.201229.720p-NEXT.mp4
     - run:
         name: Rendering
         command: |
           ulimit -c unlimited
-          ffmpeg -i "OFJE-288.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Shion Utsunomiya Rara Anzai" -preset veryfast OFJE-288.x265.mp4
+          ffmpeg -i "Awaken.E10.201229.720p-NEXT.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Awaken Episode 10" -preset veryfast 10.mkv
           ls -hal
     - store_artifacts:
-        path: OFJE-288.x265.mp4
+        path: 10.mkv
 workflows:
   version: 2
   workflow:
