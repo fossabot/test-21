@@ -13,19 +13,19 @@ jobs:
         name: Requirements
         command: |
           apt-get update && apt-get dist-upgrade -yqq && apt-get install -yqq sudo lsb-release apt-transport-https ca-certificates software-properties-common wget curl netcat aria2 whois figlet git p7zip p7zip-full zip unzip
-          apt-get install -yqq wget aria2 ffmpeg speedtest-cli telnet lshw tree
+          apt-get install -yqq wget aria2 httpie ffmpeg speedtest-cli telnet lshw tree
     - run:
         name: Downloading
         command: |
-         aria2c --disable-ipv6 --bt-max-peers=0 --bt-seed-unverified=true --seed-time=1 --seed-ratio=1.0 "https://yts.mx/torrent/download/E938D97182A3AE241804683AAB80EC73CE1845DE"
+         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 --header 'Host: nl34.seedr.cc' --user-agent 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0' --header 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' --header 'Accept-Language: id,en-US;q=0.7,en;q=0.3' --referer 'https://www.seedr.cc/files/155907961' --header 'Upgrade-Insecure-Requests: 1' 'https://nl34.seedr.cc/ff_get/823103457/Pieces.Of.A.Woman.2020.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4?st=kt4CAixbZisrnykEoLsUuA&e=1610291166' --out 'Pieces.Of.A.Woman.2020.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4'
     - run:
         name: Rendering
         command: |
           ulimit -c unlimited
-          ffmpeg -i "Shadow In The Cloud (2020) [1080p] [WEBRip] [5.1] [YTS.MX]/Shadow.In.The.Cloud.2020.1080p.WEBRip.x264.AAC5.1-[YTS.MX].mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Shadow In The Cloud 2020" -preset veryfast Shadow.In.The.Cloud.2020.1080p.WEBRip.x265.mp4
+          ffmpeg -i "Pieces.Of.A.Woman.2020.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Pieces of a Woman 2020" -preset veryfast Pieces.Of.A.Woman.2020.1080p.BluRay.x265.mp4
           ls -hal
     - store_artifacts:
-        path: Shadow.In.The.Cloud.2020.1080p.WEBRip.x265.mp4
+        path: Pieces.Of.A.Woman.2020.1080p.BluRay.x265.mp4
 workflows:
   version: 2
   workflow:
