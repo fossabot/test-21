@@ -17,15 +17,15 @@ jobs:
     - run:
         name: Downloading
         command: |
-         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 --header 'Host: fr8.seedr.cc' --user-agent 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0' --header 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' --header 'Accept-Language: id,en-US;q=0.7,en;q=0.3' --referer 'https://www.seedr.cc/files/156165363' --header 'Upgrade-Insecure-Requests: 1' 'https://fr8.seedr.cc/ff_get/824755673/Awaken.S01E13.1080p.WEB-DL.H264.AAC-AppleTor.mp4?st=3NKOAzdLuXswSH3gQw3uIA&e=1610478020' --out 'Awaken.S01E13.1080p.WEB-DL.H264.AAC-AppleTor.mp4'
+         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 https://v5.4animu.me/Naruto-Shippuden/Naruto-Shippuden-Episode-1-1080p.mp4
     - run:
         name: Rendering
         command: |
           ulimit -c unlimited
-          ffmpeg -i "Awaken.S01E13.1080p.WEB-DL.H264.AAC-AppleTor.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Awaken Episode 13" -preset veryfast 13.mkv
+          ffmpeg -i "Naruto-Shippuden-Episode-1-1080p.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Naruto Shippuden Episode 01" -preset veryfast 01.mkv
           ls -hal
     - store_artifacts:
-        path: 13.mkv
+        path: 01.mkv
 workflows:
   version: 2
   workflow:
