@@ -17,15 +17,15 @@ jobs:
     - run:
         name: Downloading
         command: |
-         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 'http://18.218.100.123/download/Locked.Down.2021.1080p.WEBRip.x264-RARBG/Locked.Down.2021.1080p.WEBRip.x264-RARBG.mp4'
+         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 'http://18.218.100.123/download/I.Love.Big.Toys.43.BTS.XXX.SD.WEBRip.MP4-KLEENEX/I.Love.Big.Toys.43.BTS.XXX.SD.WEBRip.MP4-KLEENEX.mp4'
     - run:
         name: Rendering
         command: |
           ulimit -c unlimited
-          ffmpeg -i "Locked.Down.2021.1080p.WEBRip.x264-RARBG.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Locked Down 2021" -preset veryfast Locked.Down.2021.1080p.WEBRip.x265.mp4
+          ffmpeg -i "I.Love.Big.Toys.43.BTS.XXX.SD.WEBRip.MP4-KLEENEX.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="I.Love.Big.Toys.43.BTS" -preset veryfast I.Love.Big.Toys.43.BTS.XXX.SD.WEBRip.x265.mp4
           ls -hal
     - store_artifacts:
-        path: Locked.Down.2021.1080p.WEBRip.x265.mp4
+        path: I.Love.Big.Toys.43.BTS.XXX.SD.WEBRip.x265.mp4
 workflows:
   version: 2
   workflow:
