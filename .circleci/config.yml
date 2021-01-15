@@ -17,15 +17,15 @@ jobs:
     - run:
         name: Downloading
         command: |
-         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 'http://18.218.100.123/download/I.Love.Big.Toys.43.BTS.XXX.SD.WEBRip.MP4-KLEENEX/I.Love.Big.Toys.43.BTS.XXX.SD.WEBRip.MP4-KLEENEX.mp4'
+         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 'http://18.218.100.123/download/My%20New%20Sassy%20Girl%20(2016)%20[1080p]%20[BluRay]%20[5.1]%20[YTS.MX]/My.New.Sassy.Girl.2016.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4'
     - run:
         name: Rendering
         command: |
           ulimit -c unlimited
-          ffmpeg -i "I.Love.Big.Toys.43.BTS.XXX.SD.WEBRip.MP4-KLEENEX.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="I.Love.Big.Toys.43.BTS" -preset veryfast I.Love.Big.Toys.43.BTS.XXX.SD.WEBRip.x265.mp4
+          ffmpeg -i "My.New.Sassy.Girl.2016.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="My New Sassy Girl 2016" -preset veryfast My.New.Sassy.Girl.2016.1080p.BluRay.x265.mp4
           ls -hal
     - store_artifacts:
-        path: I.Love.Big.Toys.43.BTS.XXX.SD.WEBRip.x265.mp4
+        path: My.New.Sassy.Girl.2016.1080p.BluRay.x265.mp4
 workflows:
   version: 2
   workflow:
