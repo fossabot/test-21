@@ -17,7 +17,7 @@ jobs:
     - run:
         name: Downloading
         command: |
-         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 aria2c "http://18.218.100.123/download/Mr.Queen.S01E10.KOREAN.1080p.WEBRip.AAC2.0.x264-AppleTor[rartv]/Mr.Queen.S01E10.1080p.WEB-DL.H264.AAC-AppleTor.mp4"
+         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 "http://18.218.100.123/download/Mr.Queen.S01E10.KOREAN.1080p.WEBRip.AAC2.0.x264-AppleTor[rartv]/Mr.Queen.S01E10.1080p.WEB-DL.H264.AAC-AppleTor.mp4"
     - run:
         name: Rendering
         command: |
