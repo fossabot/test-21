@@ -17,7 +17,7 @@ jobs:
     - run:
         name: Downloading
         command: |
-         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 aria2c "https://www.dropbox.com/s/dl/j1vzb3fwkjlo03u/Awaken.E15.210118.720p-NEXT.mp4"
+         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 "https://www.dropbox.com/s/dl/j1vzb3fwkjlo03u/Awaken.E15.210118.720p-NEXT.mp4"
     - run:
         name: Rendering
         command: |
