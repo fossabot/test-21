@@ -17,15 +17,15 @@ jobs:
     - run:
         name: Downloading
         command: |
-         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 "https://www.dropbox.com/s/dl/n5gqadmmcg3lhwp/Running.Man.E539.210124.720p-NEXT.mp4"
+         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 --header 'Host: nl34.seedr.cc' --user-agent 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0' --header 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' --header 'Accept-Language: id,en-US;q=0.7,en;q=0.3' --referer 'https://www.seedr.cc/files/157878076' --header 'Upgrade-Insecure-Requests: 1' 'https://nl34.seedr.cc/ff_get/835043157/Mr.Queen.S01E14.1080p.WEB-DL.H264.AAC-AppleTor.mp4?st=oxn42HhTt6Kg1ylWjX1AiA&e=1611687432' --out 'Mr.Queen.S01E14.1080p.WEB-DL.H264.AAC-AppleTor.mp4'
     - run:
         name: Rendering
         command: |
           ulimit -c unlimited
-          ffmpeg -i "Running.Man.E539.210124.720p-NEXT.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Running Man Episode 539" -preset veryfast 539.mkv
+          ffmpeg -i "Mr.Queen.S01E14.1080p.WEB-DL.H264.AAC-AppleTor.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Mr. Queen Episode 12" -preset veryfast Mr.Queen.S01E14.1080p.WEB-DL.x265.mkv
           ls -hal
     - store_artifacts:
-        path: 539.mkv
+        path: Mr.Queen.S01E14.1080p.WEB-DL.x265.mkv
 workflows:
   version: 2
   workflow:
