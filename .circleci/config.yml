@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: docker.pkg.github.com/5u9/deb/debian:latest
+      - image: docker.pkg.github.com/5u9/test/ubuntu:16.04
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD  # context / project UI env-var reference
