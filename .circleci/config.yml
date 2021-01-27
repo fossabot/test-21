@@ -17,15 +17,15 @@ jobs:
     - run:
         name: Downloading
         command: |
-         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 "https://www.dropbox.com/s/dl/elqy76is1tzn7p8/gas-477-A.mp4"
+         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 "https://www.dropbox.com/s/dl/p3avx4dvrb8b9yx/gas-477-B.mp4"
     - run:
         name: Rendering
         command: |
           ulimit -c unlimited
-          ffmpeg -i "gas-477-A.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Marina Yuzuki" -preset veryfast -s 1280x720 gas-477-A.x265.mp4
+          ffmpeg -i "gas-477-B.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Marina Yuzuki" -preset veryfast -s 1280x720 gas-477-B.x265.mp4
           ls -hal
     - store_artifacts:
-        path: gas-477-A.x265.mp4
+        path: gas-477-B.x265.mp4
 workflows:
   version: 2
   workflow:
