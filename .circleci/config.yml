@@ -22,7 +22,7 @@ jobs:
         name: Rendering
         command: |
           ulimit -c unlimited
-          ffmpeg -i "Digimon.Adventure.Tri..Part.2.Determination.2016.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="'Digimon Adventure Tri. Part 2 Determination 2016" -preset veryfast Digimon.Adventure.Tri..Part.2.Determination.2016.1080p.BluRay.x265.mp4
+          ffmpeg -i "Digimon.Adventure.Tri..Part.2.Determination.2016.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Digimon Adventure Tri. Part 2 Determination 2016" -preset veryfast Digimon.Adventure.Tri..Part.2.Determination.2016.1080p.BluRay.x265.mp4
           ls -hal
     - store_artifacts:
         path: Digimon.Adventure.Tri..Part.2.Determination.2016.1080p.BluRay.x265.mp4
