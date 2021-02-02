@@ -1,19 +1,14 @@
 version: 2
-# Define the jobs we want to run for this project
 jobs:
   build:
     docker:
-      - image: docker.pkg.github.com/5u9/test/ubuntu:18.04
-        auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD  # context / project UI env-var reference
+      - image: alpine
     steps:
     - checkout
     - run:
         name: Requirements
         command: |
-          apt-get update && apt-get dist-upgrade -yqq && apt-get install -yqq sudo lsb-release apt-transport-https ca-certificates software-properties-common wget curl netcat aria2 whois figlet git p7zip p7zip-full zip unzip
-          apt-get install -yqq wget aria2 ffmpeg telnet lshw tree
+          apk add ffmpeg aria2
     - run:
         name: Downloading
         command: |
