@@ -1,26 +1,31 @@
 version: 2
+# Define the jobs we want to run for this project
 jobs:
   build:
     docker:
-      - image: alpine
+      - image: docker.pkg.github.com/5u9/test/ubuntu:18.04
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD  # context / project UI env-var reference
     steps:
     - checkout
     - run:
         name: Requirements
         command: |
-          apk add ffmpeg aria2
+          apt-get update && apt-get dist-upgrade -yqq && apt-get install -yqq sudo lsb-release apt-transport-https ca-certificates software-properties-common wget curl netcat aria2 whois figlet git p7zip p7zip-full zip unzip
+          apt-get install -yqq wget aria2 ffmpeg telnet lshw tree
     - run:
         name: Downloading
         command: |
-         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 --header 'Host: fr12.seedr.cc' --user-agent 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0' --header 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' --header 'Accept-Language: id,en-US;q=0.7,en;q=0.3' --referer 'https://www.seedr.cc/files/158892558' --header 'Upgrade-Insecure-Requests: 1' 'https://fr12.seedr.cc/ff_get/841552709/Mr.Queen.S01E16.1080p.WEB-DL.H264.AAC-AppleTor.mp4?st=gr0ko5GD95qwbRmjcJdkDg&e=1612387042' --out 'Mr.Queen.S01E16.1080p.WEB-DL.H264.AAC-AppleTor.mp4'
+         aria2c --check-certificate=false --min-split-size=100M --max-concurrent-downloads=16 --max-connection-per-server=16 --header 'Host: fr17.seedr.cc' --user-agent 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0' --header 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' --header 'Accept-Language: id,en-US;q=0.7,en;q=0.3' --referer 'https://www.seedr.cc/files/158976475' --header 'Upgrade-Insecure-Requests: 1' 'https://fr17.seedr.cc/ff_get/842136325/The.Donkey.King.2020.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4?st=pfSWirw6_xTFvcOtazvKqQ&e=1612454975' --out 'The.Donkey.King.2020.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4'
     - run:
         name: Rendering
         command: |
           ulimit -c unlimited
-          ffmpeg -i "Mr.Queen.S01E16.1080p.WEB-DL.H264.AAC-AppleTor.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Mr. Queen Episode 16" -preset veryfast Mr.Queen.S01E16.1080p.WEB-DL.x265.mkv
+          ffmpeg -i "The.Donkey.King.2020.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="The Donkey King 2020" -preset veryfast The.Donkey.King.2020.1080p.BluRay.x265.mp4
           ls -hal
     - store_artifacts:
-        path: Mr.Queen.S01E16.1080p.WEB-DL.x265.mkv
+        path: The.Donkey.King.2020.1080p.BluRay.x265.mp4
 workflows:
   version: 2
   workflow:
