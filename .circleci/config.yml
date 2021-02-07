@@ -22,7 +22,7 @@ jobs:
         name: Rendering
         command: |
           ulimit -c unlimited
-          ffmpeg -i "YAKO-021.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Woman Rin" -preset veryfast YAKO-021.x265.mp4
+          ffmpeg -i "YAKO-021.mp4" -threads 16 -c:v libx265 -c:a copy -metadata title="Woman Rin" -preset veryfast -s 1280x720 YAKO-021.x265.mp4
           ls -hal
     - store_artifacts:
         path: YAKO-021.x265.mp4
