@@ -7,7 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          scripts/brew-env.sh
           brew update --force --quiet
           brew upgrade
           brew config
